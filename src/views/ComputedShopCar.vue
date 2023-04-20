@@ -1,4 +1,6 @@
 <template>
+  <Gap></Gap>
+  使用computed示例购物车功能
   <div class="content">
     <table border="true" style="width: 800px">
       <tr>
@@ -26,6 +28,9 @@
       </tr>
     </table>
   </div>
+  <Gap></Gap>
+ 
+
 </template>
 
 <script setup lang="ts">

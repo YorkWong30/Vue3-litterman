@@ -22,6 +22,10 @@ const navList = ref([
   {
     name: '购物车',
     path: 'computedShopCar'
+  },
+  {
+    name: '关于组件',
+    path: 'aboutComponents'
   }
 ])
 </script>
@@ -43,7 +47,7 @@ const navList = ref([
   padding: 20px;
 }
 .nav-button {
-  padding: 10px 15px;
+  padding:2px 5px;
   border: none;
   border-radius: 40px;
   color: #000000 !important;
