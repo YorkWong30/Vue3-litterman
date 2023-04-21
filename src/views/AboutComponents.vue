@@ -14,11 +14,30 @@
       <h1>递归组件</h1>
       <Recursion :theListData="recursionData"></Recursion>
     </div>
+    <Gap></Gap>
+    <h1>动态组件</h1>
+    <div>
+      <span
+        @click="changCom(item)"
+        style="border: 2px solid #000000; margin-right: 20px"
+        v-for="(item, index) in componentsList"
+        :key="index"
+        >{{ item.name }}</span
+      >
+
+      <component :is="comId"></component>
+    </div>
+    <Gap></Gap>
+
   </div>
 </template>
   <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import Recursion from './components/Recursion.vue'
+
+import AVue from './components/a-vue.vue'
+import BVue from './components/b-vue.vue'
+
 interface TreeList {
   name: string
   children?: TreeList[] | []
@@ -49,6 +68,21 @@ const recursionData = reactive<TreeList[]>([
     name: 'no.3'
   }
 ])
+
+const componentsList = reactive([
+  {
+    name: 'aVue',
+    com: AVue
+  },
+  {
+    name: 'bVue',
+    com: BVue
+  }
+])
+const comId = ref(AVue)
+const changCom = (item) => {
+  comId.value = item.com
+}
 </script>
   <style  scoped>
 .content {
