@@ -26,6 +26,10 @@ const navList = ref([
   {
     name: '关于组件',
     path: 'aboutComponents'
+  },
+  {
+    name: '内置组件',
+    path: 'builtInComponents'
   }
 ])
 </script>
@@ -61,5 +65,6 @@ const navList = ref([
   width: 100%;
   height: calc(100vh - 50px);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>

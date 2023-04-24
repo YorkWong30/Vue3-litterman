@@ -15,7 +15,7 @@
       <Recursion :theListData="recursionData"></Recursion>
     </div>
     <Gap></Gap>
-    <h1>动态组件</h1>
+    <h1>动态组件[搭配transition]</h1>
     <div>
       <span
         @click="changCom(item)"
@@ -24,11 +24,12 @@
         :key="index"
         >{{ item.name }}</span
       >
-
-      <component :is="comId"></component>
+      <transition appear name="slide-fade" mode="out-in">
+        <component :is="comId"></component>
+      </transition>
     </div>
     <Gap></Gap>
-
+   
   </div>
 </template>
   <script setup lang="ts">
@@ -87,6 +88,17 @@ const changCom = (item) => {
   <style  scoped>
 .content {
   width: 100%;
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease-in;
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>
   
