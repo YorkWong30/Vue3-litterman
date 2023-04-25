@@ -34,6 +34,14 @@ const navList = ref([
   {
     name: '依赖注入',
     path: 'provideInject'
+  },
+  {
+    name: '手写发布订阅 ',
+    path: 'bus'
+  },
+  {
+    name: 'Mitt ',
+    path: 'mitt'
   }
 ])
 </script>
@@ -44,6 +52,7 @@ const navList = ref([
 .content {
   width: 100%;
 }
+
 .nav-div {
   width: 100%;
   box-sizing: border-box;
@@ -54,6 +63,7 @@ const navList = ref([
   border-bottom: 1px dashed #d5cfcf;
   padding: 20px;
 }
+
 .nav-button {
   padding: 2px 5px;
   border: none;
@@ -61,14 +71,15 @@ const navList = ref([
   color: #000000 !important;
   margin-right: 10px;
 }
+
 .nav-button a {
   font-weight: bold;
   font-size: 12px;
 }
+
 .main-div {
   width: 100%;
   height: calc(100vh - 50px);
   overflow-y: auto;
   overflow-x: hidden;
-}
-</style>
+}</style>
