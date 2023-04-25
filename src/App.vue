@@ -30,6 +30,10 @@ const navList = ref([
   {
     name: '内置组件',
     path: 'builtInComponents'
+  },
+  {
+    name: '依赖注入',
+    path: 'provideInject'
   }
 ])
 </script>
@@ -51,13 +55,13 @@ const navList = ref([
   padding: 20px;
 }
 .nav-button {
-  padding:2px 5px;
+  padding: 2px 5px;
   border: none;
   border-radius: 40px;
   color: #000000 !important;
   margin-right: 10px;
 }
-.nav-button a{
+.nav-button a {
   font-weight: bold;
   font-size: 12px;
 }

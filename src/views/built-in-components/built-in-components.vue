@@ -87,9 +87,15 @@
   </div>
   <Gap></Gap>
 
+  <h1>状态过渡</h1>
+  <div style="height: 500px">
+    <input type="number" v-model="num.current" />
+    <div>{{ num.tweenedNumber.toFixed(0) }}</div>
+  </div>
+  <Gap></Gap>
 </template>
 <script setup lang="ts">
-import {  reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import _ from 'lodash'
 //Teleport------------------------
 let open = ref<boolean>(false)
@@ -148,6 +154,22 @@ const random = () => {
 
   console.log('items..', items.value)
 }
+
+// 状态过渡
+const num = reactive({
+  tweenedNumber: 0,
+  current: 0
+})
+
+watch(
+  () => num.current,
+  (newVal: any) => {
+    gsap.to(num, {
+      duration: 1,
+      tweenedNumber: newVal
+    })
+  }
+)
 </script>
 
 
