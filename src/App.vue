@@ -40,9 +40,12 @@ const navList = ref([
     path: 'bus'
   },
   {
-    name: 'Mitt ',
+    name: 'Mitt',
     path: 'mitt'
-  }
+  },{
+    name: 'v-model组件',
+    path: 'vModel'
+  },
 ])
 </script>
 
