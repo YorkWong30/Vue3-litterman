@@ -42,9 +42,12 @@ const navList = ref([
   {
     name: 'Mitt',
     path: 'mitt'
-  },{
+  }, {
     name: 'v-model组件',
     path: 'vModel'
+  }, {
+    name: '自定义指令',
+    path: 'customDirectives'
   },
 ])
 </script>
@@ -85,4 +88,5 @@ const navList = ref([
   height: calc(100vh - 50px);
   overflow-y: auto;
   overflow-x: hidden;
-}</style>
+}
+</style>
