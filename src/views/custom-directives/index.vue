@@ -3,15 +3,13 @@
 
     <div>
         <h1>鉴权</h1>
-        <button v-has-show="'shop:create'">创建</button>
-        <button v-has-show="'shop:edit'">编辑</button>
-        <button v-has-show="'shop:edit'">修改</button>
+        <button v-power="'shop:create'">创建</button>
+        <button v-power="'shop:edit'">编辑</button>
+        <button v-power="'shop:edit'">修改</button>
 
     </div>
     <gap></gap>
     <h1>拖拽</h1>
-
-
     <div>
         <div class="move-box" v-move>
 
@@ -23,11 +21,18 @@
         </div>
     </div> -->
     <gap></gap>
+    <h1>图片懒加载</h1>
+    <div>
+        <div v-for="item in arr" :key="item">
+            <img height="500" :data-index="item" v-lazy="item" width="360" alt="">
+        </div>
+    </div>
 </template>
     
 <script setup lang="ts">
+import { entries } from 'lodash-es';
 import { ref, reactive, } from 'vue'
-import Directive from 'vue';
+import type { Directive } from 'vue';
 localStorage.setItem('userId', '110');
 
 //mock模拟返回后端数据
@@ -39,9 +44,9 @@ const permission = [
 
 const userId = localStorage.getItem('userId') as string;
 
-//自定义指令鉴权
-const vHasShow: Directive<HTMLElement, string> = (el, binding) => {
-    console.log('(el, binding)..', el, binding);
+//自定义指令案例1：鉴权
+const vPower: Directive<HTMLElement, string> = (el, binding) => {
+    // console.log('(el, binding)..', el, binding);
 
     if (!permission.includes(`${userId}:${binding.value}`)) {
         el.style.display = 'none';
@@ -49,7 +54,7 @@ const vHasShow: Directive<HTMLElement, string> = (el, binding) => {
 
 }
 
-//自定义指令 推拽
+//自定义指令案例2： 推拽
 const vMove: Directive = {
     mounted(el: HTMLElement) {
         let moveEl = el as HTMLElement;
@@ -71,6 +76,37 @@ const vMove: Directive = {
         moveEl.addEventListener("mousedown", mouseDown);
     },
 };
+
+
+//自定义指令案例3：图片懒加载
+const imagesList = import.meta.glob('@/assets/directivesImages/*.jpg', { eager: true })
+console.log('imagesList..', imagesList);
+
+let arr = Object.keys(imagesList)
+console.log('arr..', arr);
+
+let vLazy: Directive<HTMLImageElement, string> = async (el, binding) => {
+    console.log(el, binding);
+    //设置默认加载图片
+    let url = await import('@/assets/directivesImages/empty.png')
+    el.src = url.default;
+
+    let observer = new IntersectionObserver((entries) => {
+        console.log('el..', el);
+
+        console.log(entries[0].isIntersecting);
+        //isIntersecting<boolean>是否在可视区域
+        if (entries[0].intersectionRatio > 0 && entries[0].isIntersecting) {
+            setTimeout(() => {
+                el.src = binding.value;
+                observer.unobserve(el);
+            }, 500)
+        }
+
+    })
+    observer.observe(el);
+}
+
 </script>
   
   
