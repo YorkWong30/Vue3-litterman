@@ -80,6 +80,22 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/custom-directives/index.vue')
+    },
+    {
+      path: '/useDynamics',
+      name: 'useDynamics',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/use-dynamics/index.vue')
+    },
+    {
+      path: '/hooks',
+      name: 'hooks',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/hooks/index.vue')
     }
   ]
 })

@@ -1,5 +1,8 @@
 <template>
     <gap></gap>
+    <h1>vValue</h1>
+    <div><input type="text" v-value v-focus></div>
+    <gap></gap>
 
     <div>
         <h1>鉴权</h1>
@@ -27,12 +30,13 @@
             <img height="500" :data-index="item" v-lazy="item" width="360" alt="">
         </div>
     </div>
+    <gap></gap>
 </template>
     
 <script setup lang="ts">
 import { entries } from 'lodash-es';
 import { ref, reactive, } from 'vue'
-import type { Directive } from 'vue';
+import Directive from 'vue';
 localStorage.setItem('userId', '110');
 
 //mock模拟返回后端数据
@@ -46,12 +50,9 @@ const userId = localStorage.getItem('userId') as string;
 
 //自定义指令案例1：鉴权
 const vPower: Directive<HTMLElement, string> = (el, binding) => {
-    // console.log('(el, binding)..', el, binding);
-
     if (!permission.includes(`${userId}:${binding.value}`)) {
         el.style.display = 'none';
     }
-
 }
 
 //自定义指令案例2： 推拽
@@ -85,13 +86,12 @@ console.log('imagesList..', imagesList);
 let arr = Object.keys(imagesList)
 console.log('arr..', arr);
 
-let vLazy: Directive<HTMLImageElement, string> = async (el, binding) => {
-    console.log(el, binding);
+let vLazy: Directive<HTMLImageElement, string> = async (el: any, binding: any) => {
     //设置默认加载图片
     let url = await import('@/assets/directivesImages/empty.png')
     el.src = url.default;
 
-    let observer = new IntersectionObserver((entries) => {
+    let observer = new Observer((entries) => {
         console.log('el..', el);
 
         console.log(entries[0].isIntersecting);
@@ -107,6 +107,12 @@ let vLazy: Directive<HTMLImageElement, string> = async (el, binding) => {
     observer.observe(el);
 }
 
+//默认给input写入value
+const vValue: Directive = (el, binding) => {
+    console.log('vValue..', el, binding);
+    el.value = '自定义指令input value'
+
+}
 </script>
   
   

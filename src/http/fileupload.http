@@ -1,0 +1,34 @@
+POST / HTTP/1.1
+Host: jhhn-files.oss-cn-shenzhen.aliyuncs.com
+Authorization: bearer 848ca243-9cd4-49c6-8324-7e3a5c927a5e
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryOhLBlNjXeMyciyR0
+------WebKitFormBoundaryOhLBlNjXeMyciyR0
+Content-Disposition: form-data; name="name"
+
+1683275942623_291_九划云-普通logo(1).jpg
+------WebKitFormBoundaryOhLBlNjXeMyciyR0
+Content-Disposition: form-data; name="key"
+
+questionImage/2023年/1683275942623_291_九划云-普通logo(1).jpg
+------WebKitFormBoundaryOhLBlNjXeMyciyR0
+Content-Disposition: form-data; name="policy"
+
+eyJleHBpcmF0aW9uIjoiMjAyMy0wNS0wNVQwODo0OTowNi4wMzhaIiwiY29uZGl0aW9ucyI6W1siY29udGVudC1sZW5ndGgtcmFuZ2UiLDAsMTA0ODU3NjAwMF0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCIiXV19
+------WebKitFormBoundaryOhLBlNjXeMyciyR0
+Content-Disposition: form-data; name="OSSAccessKeyId"
+
+LTAICTKPzNRCQlV5
+------WebKitFormBoundaryOhLBlNjXeMyciyR0
+Content-Disposition: form-data; name="signature"
+
++CoP+kJ113KM7aekevKkE2iTNzA=
+------WebKitFormBoundaryOhLBlNjXeMyciyR0
+Content-Disposition: form-data; name="success_action_status"
+
+200
+------WebKitFormBoundaryOhLBlNjXeMyciyR0
+Content-Disposition: form-data; name="file"; filename="九划云-普通logo  (1).jpg"
+Content-Type: image/jpeg
+< ./a.jpg>
+
+------WebKitFormBoundaryOhLBlNjXeMyciyR0--

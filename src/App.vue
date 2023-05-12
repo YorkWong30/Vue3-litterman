@@ -49,6 +49,12 @@ const navList = ref([
   }, {
     name: '自定义指令',
     path: 'customDirectives'
+  }, {
+    name: 'dynamics.js',
+    path: 'useDynamics'
+  }, {
+    name: 'hooks',
+    path: 'hooks'
   },
 ])
 </script>
