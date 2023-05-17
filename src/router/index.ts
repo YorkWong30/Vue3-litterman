@@ -96,6 +96,22 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/hooks/index.vue')
+    },
+    {
+      path: '/style-plugin',
+      name: 'style-plugin',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/style-plugin/index.vue')
+    },
+    {
+      path: '/pinia',
+      name: 'pinia',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/pinia/pinia.vue')
     }
   ]
 })

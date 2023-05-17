@@ -55,6 +55,13 @@ const navList = ref([
   }, {
     name: 'hooks',
     path: 'hooks'
+  }, {
+    name: 'style-plugin',
+    path: 'style-plugin'
+  },
+  {
+    name: 'pinia',
+    path: 'pinia'
   },
 ])
 </script>
@@ -62,6 +69,10 @@ const navList = ref([
 
 
 <style scoped>
+/* 全局样式选择器 */
+/* :global(div){
+  color: pink;
+} */
 .content {
   width: 100%;
 }
