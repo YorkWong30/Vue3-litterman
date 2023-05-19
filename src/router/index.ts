@@ -1,13 +1,41 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+declare module 'vue-router' {
+  interface RouteMeta {
+    title?: string
+    animate?: string
+  }
+}
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHashHistory(),
+  scrollBehavior: (to, from, savePosition) => {
+    console.log('savePosition..', savePosition)
+    if (savePosition) {
+      return savePosition
+    } else {
+      return {
+        top: 0
+      }
+    }
+    //使用异步跳转
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve({
+    //       top: 9999999
+    //     })
+    //   }, 2000)
+    // })
+  },
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: '首页',
+        animate: 'animate__zoomIn'
+      }
     },
     {
       path: '/about',
@@ -23,7 +51,11 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ComputedShopCar.vue')
+      component: () => import('../views/ComputedShopCar.vue'),
+      meta: {
+        title: '购物车',
+        animate: 'animate__zoomIn'
+      }
     },
     {
       path: '/aboutComponents',
@@ -79,7 +111,10 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/custom-directives/index.vue')
+      component: () => import('../views/custom-directives/index.vue'),
+      meta: {
+        title: '自定义指令'
+      }
     },
     {
       path: '/useDynamics',
@@ -112,6 +147,22 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/pinia/pinia.vue')
+    },
+    {
+      path: '/vue-router',
+      name: 'vue-router',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/vue-router/vue-router.vue')
+    },
+    {
+      path: '/router-b',
+      name: 'router-b',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/vue-router/router-b.vue')
     }
   ]
 })

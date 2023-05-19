@@ -1,12 +1,23 @@
 <template>
   <div class="content">
+
     <div class="nav-div">
       <button v-for="(item, index) in navList" :key="index" class="nav-button">
-        <RouterLink :to="`/${item.path}`">{{ item.name }}</RouterLink>
+        <!-- 方法一 -->
+        <!-- <RouterLink :to="`/${item.path}`">{{ item.name }}</RouterLink> -->
+
+        <!-- 方法二 -->
+        <RouterLink :to="{ name: `${item.path}` }">{{ item.name }}</RouterLink>
+
+        <!-- 方法三 -->
       </button>
     </div>
     <div class="main-div">
-      <RouterView />
+      <router-view #default="{ route, Component }">
+        <Transition :enter-active-class="`animate__animated  ${route.meta.animate}`">
+          <component :is="Component"></component>
+        </Transition>
+      </router-view>
     </div>
   </div>
 </template>
@@ -14,11 +25,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import 'animate.css'
 
 const navList = ref([
   {
     name: 'Home',
-    path: ''
+    path: 'home'
   },
   {
     name: '购物车',
@@ -62,6 +74,9 @@ const navList = ref([
   {
     name: 'pinia',
     path: 'pinia'
+  }, {
+    name: 'vue-router',
+    path: 'vue-router'
   },
 ])
 </script>
@@ -94,6 +109,7 @@ const navList = ref([
   border-radius: 40px;
   color: #000000 !important;
   margin-right: 10px;
+  margin-top: 10px;
 }
 
 .nav-button a {
@@ -103,7 +119,7 @@ const navList = ref([
 
 .main-div {
   width: 100%;
-  height: calc(100vh - 50px);
+  /* height: calc(100vh - 50px); */
   overflow-y: auto;
   overflow-x: hidden;
 }

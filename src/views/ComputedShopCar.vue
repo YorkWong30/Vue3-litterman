@@ -1,5 +1,6 @@
 <template>
-  <Gap></Gap>
+  <div>
+    <Gap></Gap>
   使用computed示例购物车功能
   <div class="content">
     <table border="true" style="width: 800px">
@@ -29,6 +30,7 @@
     </table>
   </div>
   <Gap></Gap>
+  </div>
  
 
 </template>

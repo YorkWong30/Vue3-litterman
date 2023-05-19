@@ -1,4 +1,4 @@
-import { createApp, toRaw } from 'vue'
+import { createApp, toRaw, render } from 'vue'
 import { createPinia } from 'pinia'
 
 import type { Directive } from 'vue'
@@ -10,6 +10,10 @@ import Gap from './components/publicComponents/Gap.vue'
 import mitt from 'mitt'
 
 import './assets/main.css'
+
+import { loadingBarVue, loadingBarNode } from './components/loadingBar/laodingBar'
+console.log('loadingBarNode...', loadingBarNode)
+console.log('loadingBarVue...', loadingBarVue)
 
 const app = createApp(App)
 
@@ -75,5 +79,28 @@ store.use(
   })
 )
 app.use(store)
+
+//路由前置守卫
+//配置白名单
+const whiteList = ['/']
+router.beforeEach((to, from, next) => {
+  console.log(to)
+  document.title = to.meta.title;
+  loadingBarNode?.component?.exposed?.startLoading()
+  next()
+  // if (whiteList.includes(to.path)) {
+  //   next()
+  // } else {
+  //   next('/')
+  //   console.log(`${from.path} is not belong whiteList`)
+  // }
+})
+
+//路由后置守卫
+router.afterEach((to, from) => {
+  setTimeout(() => {
+    loadingBarNode?.component?.exposed?.stopLoading()
+  }, 1000)
+})
 
 app.mount('#app')

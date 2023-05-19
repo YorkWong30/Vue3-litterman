@@ -88,6 +88,7 @@ const changCom = (item) => {
   <style  scoped>
 .content {
   width: 100%;
+
 }
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
